@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block link %}
+    <a href="/" class="links">Home</a>
+    <a href="/verbentry" class="links">Add Verb</a>
+    <a href="/delete" class="links">Delete Verb</a>
+    <a href="/search" class="links">New Deck</a>
+    <a href="/logout" class="links">Logout</a>
+{% endblock %}
+
+{% block body %}
+    <div class="main">
+        <h1 class="main-title">Delete Verb</h1>
+            <form action="/delete" method="post">
+                <div style="padding-bottom: 5px">
+                    <select name="verb" id="verb">
+                        <option disabled selected value>Verb</option>
+                        {% for verb in verbs %}
+                        <option>{{ verb['verb'] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <input type="submit" id="submit">
+            </form>
+    </div>
+{% endblock %}

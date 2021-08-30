@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block link %}
+    <a href="/" class="links">Home</a>
+    <a href="/verbentry" class="links">Add Verb</a>
+    <a href="/delete" class="links">Delete Verb</a>
+    <a href="/search" class="links">New Deck</a>
+    <a href="/logout" class="links">Logout</a>
+{% endblock %}
+
+{% block body %}
+    
+    <div class="main">
+        <h1 class="main-title">Learner Home</h1>
+        
+        <div style="text-align: left; padding-bottom: 10px; position: relative;">
+            This is your homepage, where you can keep track of the verbs<br>
+            you are studying.<br> 
+            <br>
+            <div>
+                STUDY VERBS: Navigate to the link marked<a href="/search" class="links">New Deck</a> 
+                to begin studying.<br>
+                <br>
+                GET VERBS: If you want to add a new verb to your learner profile, 
+                navigate to the link marked<a href="/verbentry" class="links">Add Verb</a>.<br>
+                <br>
+                REMOVE VERBS: When you are finished studying a verb, delete it by 
+                navigating to the link marked<a href="/delete" class="links">Delete Verb</a>.
+            </div>
+        </div>
+        
+        <h2>Your Verbs</h2>
+            
+        {% for verb in verbs %}
+        <div style="padding-bottom: 5px; font-size: 25px;">
+            {{ verb['verb'] }}
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

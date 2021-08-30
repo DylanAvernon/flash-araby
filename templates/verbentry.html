@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block link %}
+    <a href="/" class="links">Home</a>
+    <a href="/verbentry" class="links">Add Verb</a>
+    <a href="/delete" class="links">Delete Verb</a>
+    <a href="/search" class="links">New Deck</a>
+    <a href="/logout" class="links">Logout</a>
+{% endblock %}
+
+{% block body %}
+    <div class="main">
+        <h1 class="main-title">Add Verb</h1>
+        <form action="/verbentry" method="post">
+            
+            <div style="padding-bottom: 5px;">
+                <input type="text" name="verb" id="verb">
+            </div>
+            
+            <input type="submit" name="submit" id="submit" disabled> 
+            
+        </form>
+    </div>
+    
+    <script>
+        document.querySelector("#verb").onkeyup = function ()
+        {
+            if (document.querySelector("#verb").value === '')
+            {
+                document.querySelector("#submit").disabled = true;
+            }
+            else
+            {
+                document.querySelector("#submit").disabled = false;
+            }
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>FLASH عraby</title>
+        <style>
+            
+            html, body
+            {
+                width: 100%;
+                height: 100%;
+                margin: 5px;
+            }
+            
+            body
+            {
+                background-color: #EEF1EF;
+            }
+
+            .header
+            {
+                background-color: #EEF1EF;
+                color: #52050A;
+                width: 100%;
+            }
+            
+            .main
+            {
+                text-align: center; 
+                padding-left: 30%;
+                padding-right: 30%;
+                border-top: 3px solid #52050A;
+                height: 350px;
+                width: 500px ;
+            
+            }
+            
+            .main-title
+            {
+                text-align: center;
+                color: #6F6866;
+            }
+
+            
+            .links
+            {
+                text-decoration: none;
+                color: #6F6866;
+                font-size: medium;
+                padding-left: 5px;
+            }
+            
+            {% block style %}
+            {% endblock %}
+        </style>
+    </head>
+    <body>
+        <div class="header" id="header">
+            <h1>FLASH <span style="color: #FF70A6;">ع</span>raby
+                {% block link %}
+                {% endblock %}
+            </h1>
+        </div>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

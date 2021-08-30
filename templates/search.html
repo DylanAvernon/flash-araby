@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block link %}
+    <a href="/" class="links">Home</a>
+    <a href="/verbentry" class="links">Add Verb</a>
+    <a href="/delete" class="links">Delete Verb</a>
+    <a href="/search" class="links">New Deck</a>
+    <a href="/logout" class="links">Logout</a>
+{% endblock %}
+
+{% block body %}
+    <div class="main">
+        <h1 class="main-title">Create Deck</h1>
+            <form action="/search" method="post">
+                
+                <div>
+                    <select name="verb" id="verb">
+                        <option disabled selected value>Verb</option>
+                        {% for verb in verbs %}
+                        <option>{{ verb['verb'] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div>
+                    <input type="checkbox" id="tenses" name="tenses" value="past">
+                    <label for="tenses"> Past</label>
+                    <input type="checkbox" id="tenses1" name="tenses" value="present">
+                    <label for="tenses1"> Present</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="persons" name="persons" value="1st">
+                    <label for="persons"> 1st</label>
+                    <input type="checkbox" id="persons1" name="persons" value="2nd">
+                    <label for="persons1"> 2nd</label>
+                    <input type="checkbox" id="persons2>" name="persons" value="3rd">
+                    <label for="persons2"> 3rd</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="numbers" name="numbers" value="singular">
+                    <label for="numbers"> singular</label>
+                    <input type="checkbox" id="numbers1" name="numbers" value="dual">
+                    <label for="numbers1"> dual</label>
+                    <input type="checkbox" id="numbers2" name="numbers" value="plural">
+                    <label for="numbers2"> plural</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="genders" name="genders" value="feminine">
+                    <label for="genders"> Feminine</label>
+                    <input type="checkbox" id="genders1" name="genders" value="masculine">
+                    <label for="genders1"> Masculine</label>
+                    <input type="checkbox" id="genders2" name="genders" value="neutral">
+                    <label for="genders2" id="genders2"> Neutral</label>
+                </div>
+                
+                <input type="submit" id="submit">
+            </form>
+    </div>
+    
+    <!--<script>-->
+    <!--    document.querySelector("#verb").onclik = function ()-->
+    <!--    {-->
+    <!--        if (document.querySelector("#verb").value === null)-->
+    <!--        {-->
+                
+    <!--            document.querySelector("#submit").disabled = true;-->
+    <!--        }-->
+    <!--        else-->
+    <!--        {-->
+    <!--            document.querySelector("#submit").disabled = false;-->
+    <!--        }-->
+    <!--    }-->
+    <!--</script>-->
+        
+{% endblock %}

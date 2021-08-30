@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block link %}
+    <a href="/" class="links">Home</a>
+    <a href="/verbentry" class="links">Add Verb</a>
+    <a href="/delete" class="links">Delete Verb</a>
+    <a href="/search" class="links">New Deck</a>
+    <a href="/logout" class="links">Logout</a>
+{% endblock %}
+
+{% block body %}
+    <div class="main">
+        <h1 class="main-title">Sorry</h1>
+        <div>
+            {{ message }}
+        </div>
+    </div>
+    
+{% endblock %}

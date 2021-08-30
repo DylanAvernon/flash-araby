@@ -1,0 +1,182 @@
+{% extends "layout.html" %}
+
+            /* Colors:
+                dim-gray: 6F6866,
+                cultured: EEF1EF,
+                orange-yellow: F2BB05,
+                rosewood: 52050A,
+                french-pink: FF70A6,
+                rich-black: 040404
+            */
+
+        {% block style %}
+    
+            #flip-card
+            {
+                text-align: center;
+                height: 100%; 
+                background-color: transparent;
+            }
+
+
+            #flip-card-inner
+            {
+                text-align: center;
+                height: 100%; 
+                background-color: transparent;
+                position: relative;
+                transition: transform 0.0s;
+                transform-style: preserve-3d;
+            }
+
+            #shadow-box
+            {
+                text-align: center;
+                height: 100%; 
+                background-color: #040404;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                transition: 0.3s;
+                border-radius: 5px;
+            }
+
+            #shadow-box:hover
+            {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+
+            #flip-card:hover #flip-card-inner
+            {
+                transform: rotateY(180deg);
+            }
+
+            #flip-card-front
+            {
+                position: absolute;
+                height: 100%;
+                left: 50%;
+                margin-left: -35px;
+                top: 50%;
+                margin-top: -20px;
+                font-size: 40px;
+                color: #F2BB05;
+                backface-visibility: hidden;
+            }
+
+            #flip-card-back
+            {
+                position: absolute;
+                height: 100%;
+                left: 50%;
+                margin-left: -35px;
+                top: 50%;
+                margin-top: -20px;
+                font-size: 40px; 
+                color: #F2BB05;
+                transform: rotateY(180deg);
+                backface-visibility: hidden;
+            }
+        {% endblock %}
+
+        {% block link %}
+            <a href="/" class="links">Home</a>
+            <a href="/verbentry" class="links">Add Verb</a>
+            <a href="/delete" class="links">Delete Verb</a>
+            <a href="/search" class="links">New Deck</a>
+            <a href="/logout" class="links">Logout</a>
+        {% endblock %}
+
+    {% block body %}
+        <div class="main" id="main">
+            <h2 class="main-title">Your Deck</h2>
+            <div id="buttons" style="padding-bottom: 5%;">
+                <button id="draw">Click me</button>
+            </div>
+            <div id="flip-card">
+                <div id="flip-card-inner">
+                    <div id="shadow-box">
+                        <div class="flip-card-front" id="flip-card-front">
+                            الفعل
+                        </div>
+                        
+                        <div class="flip-card-back" id="flip-card-back">
+                            الضمير
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+
+            let verbs = [];
+            {% for form_verb in forms_verbs %}
+                verbs.push('{{ form_verb[0] }}');
+            {% endfor %}
+            
+            let pronouns = [];
+            {% for form_pronoun in forms_pronouns %}
+                pronouns.push('{{ form_pronoun[0] }}')
+            {% endfor %}
+
+            function getRandom(num)
+            {
+                randomNumber = Math.floor(Math.random() * num);
+                return randomNumber;
+            }
+
+            let seen = [];
+            document.getElementById("draw").onclick = function(){
+
+                if (seen.length === verbs.length)
+                {
+                    seen = [];
+                }
+                var index = getRandom(verbs.length);
+
+                while (seen.includes(index) === true)
+                {
+                    index = getRandom(verbs.length);
+                }
+                var currentFront = verbs[index];
+                var currentBack = pronouns[index];
+                
+                // Measuring the width and height of the input.
+                var text = document.createElement("span");
+                document.body.appendChild(text); 
+  
+                text.style.font = "times new roman"; 
+                text.style.fontSize = 40 + "px"; 
+                text.style.height = 'auto'; 
+                text.style.width = 'auto'; 
+                text.style.position = 'absolute'; 
+                text.style.whiteSpace = 'no-wrap'; 
+                text.innerHTML = currentFront; 
+      
+                var width = Math.ceil(text.clientWidth / 2); 
+                var height = Math.ceil(text.clientHeight / 2);
+                
+                var new_left_margin_front = width * -1;
+                var new_top_margin_front = height * -1;
+                
+                text.innerHTML = currentBack;
+                
+                width = Math.ceil(text.clientWidth / 2);
+                height = Math.ceil(text.clientHeight / 2);
+                
+                var new_left_margin_back = width * -1;
+                var new_top_margin_back = height * -1;
+                
+                document.body.removeChild(text);
+                
+                document.getElementById("flip-card-front").style.marginLeft = new_left_margin_front + "px";
+                document.getElementById("flip-card-front").style.marginTop = new_top_margin_front + "px";
+                
+                document.getElementById("flip-card-back").style.marginLeft = new_left_margin_back + "px";
+                document.getElementById("flip-card-back").style.marginTop = new_top_margin_back + "px";
+
+                document.getElementById("flip-card-front").innerHTML = currentFront;
+                document.getElementById("flip-card-back").innerHTML = currentBack;
+                
+                seen.push(index);
+            }
+        </script>
+    {% endblock %}

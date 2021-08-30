@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block link %}
+    <a href="/login" class="links">Login</a>
+    <a href="/register" class="links">Register</a>
+{% endblock %}
+
+{% block body %}
+    <div class="main">
+        <h1 class="main-title">Sorry</h1>
+        <div>
+            {{ message }}
+        </div>
+    </div>
+    
+{% endblock %}
